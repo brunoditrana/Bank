@@ -24,4 +24,6 @@ public class AccountService {
     @ManyToOne
     @JoinColumn(name = "id_services")
     private Services services;
+
+
 }
