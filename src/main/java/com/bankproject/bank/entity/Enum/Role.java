@@ -46,6 +46,8 @@ public enum Role {
             RolePermission.UPDATE_SERVICE
     )),
     ROLE_CUSTOMER(Arrays.asList(
+            RolePermission.CREATE_PROFILE,
+
             RolePermission.READ_ALL_PROFILES,
             RolePermission.READ_ONE_PROFILE,
             RolePermission.READ_ALL_BRANCHES,
