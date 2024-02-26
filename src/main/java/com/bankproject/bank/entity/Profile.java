@@ -1,6 +1,6 @@
 package com.bankproject.bank.entity;
 
-import com.bankproject.bank.entity.Enum.UserType;
+import com.bankproject.bank.entity.Enum.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class User {
+public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user")
-    private Long idUser;
+    @Column(name = "id_profile")
+    private Long idProfile;
 
 
     @Column(name = "username", nullable = false, length = 45)
@@ -38,9 +38,9 @@ public class User {
     private String email;
 
 
-    @Column(name = "user_type", nullable = false)
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserType userType;
+    private Role role;
 
     @OneToOne(mappedBy = "user")
     private Account account;

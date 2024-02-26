@@ -36,8 +36,8 @@ public class Account {
     private String state;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "id_profile")
+    private Profile profile;
 
     @ManyToOne
     @JoinColumn(name = "id_branch")
