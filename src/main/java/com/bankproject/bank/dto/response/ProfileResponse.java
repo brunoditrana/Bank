@@ -19,9 +19,7 @@ public class ProfileResponse {
 
     private String lastName;
 
-    private String email;
-
-    private String role;
+    private Role role;
 
     private String jwt;
 }

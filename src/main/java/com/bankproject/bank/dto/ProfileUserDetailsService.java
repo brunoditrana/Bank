@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class ProfileUserDetailsService implements UserDetails {
 
-
     private Long idProfile;
 
     private String username;
@@ -27,7 +26,13 @@ public class ProfileUserDetailsService implements UserDetails {
 
     private String name;
 
+    private String lastName;
+
+    private String email;
+
     private Role role;
+
+    private String jwt;
 
 
     @Override
@@ -71,4 +76,10 @@ public class ProfileUserDetailsService implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getRoleName() {
+        return role != null ? role.name() : null;
+    }
+
+
 }

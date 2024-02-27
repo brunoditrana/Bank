@@ -34,15 +34,11 @@ public class Profile {
     private String lastName;
 
 
-    @Column(name = "email", nullable = false)
-    private String email;
-
-
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "profile")
     private Account account;
 
 

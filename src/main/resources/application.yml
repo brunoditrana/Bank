@@ -16,3 +16,8 @@ spring:
   sql:
     init:
       mode: always
+  security:
+    jwt:
+      expiration-in-minutes: 30
+      secret-key: "Mi clave es muuy segura"
+

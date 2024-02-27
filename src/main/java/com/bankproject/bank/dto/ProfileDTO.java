@@ -1,5 +1,6 @@
 package com.bankproject.bank.dto;
 
+import com.bankproject.bank.entity.Enum.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,13 +14,13 @@ public class ProfileDTO {
 
     private String username;
 
+    private String password;
+
     private String name;
 
     private String lastName;
 
-    private String email;
-
-    private String role;
+    private Role role;
 
 
 }
