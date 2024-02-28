@@ -20,12 +20,12 @@ import java.util.Map;
 public class AuthenticationService implements IAuthenticationService, UserDetailsService {
 
     @Autowired
+    private JwtService jwtService;
+
+    @Autowired
     private IProfileService profileService;
 
 
-
-    @Autowired
-    private IJwtService jwtService;
     @Override
     public ProfileUserDetailsService registerOneCustomer(ProfileRequest request) {
 
@@ -41,7 +41,7 @@ public class AuthenticationService implements IAuthenticationService, UserDetail
         String jwt = jwtService.generateToken(profileDTO, generateExtraClaims(profileDTO));
         response.setJwt(jwt);
 
-        return null;
+        return response;
     }
 
     private Map<String, Object> generateExtraClaims(ProfileDTO profileDTO) {

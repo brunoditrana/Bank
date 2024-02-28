@@ -7,6 +7,7 @@ import com.bankproject.bank.dto.response.ProfileResponse;
 import com.bankproject.bank.entity.Profile;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.springframework.http.ResponseEntity;
 
 @Mapper
 public interface ProfileMapper {
@@ -21,4 +22,8 @@ public interface ProfileMapper {
     ProfileDTO toDTO(ProfileRequest profileRequest);
 
     ProfileResponse toResponse(ProfileDTO profileDTO);
+
+
+    ProfileResponse toResponse(ProfileUserDetailsService prf);
+
 }
