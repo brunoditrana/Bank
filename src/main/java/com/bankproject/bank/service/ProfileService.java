@@ -3,6 +3,7 @@ package com.bankproject.bank.service;
 import com.bankproject.bank.adapter.ProfileAdapter;
 import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.entity.Enum.Role;
+import com.bankproject.bank.mapper.ProfileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,12 @@ public class ProfileService implements IProfileService{
       return profileAdapter.save(profDTO);
 
 
+    }
+
+    @Override
+    public ProfileDTO findByUsername(String username) {
+
+        return ProfileMapper.INSTANCE.toDTO( profileAdapter.findByUsername(username));
     }
 
 }

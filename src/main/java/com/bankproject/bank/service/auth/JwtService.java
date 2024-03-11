@@ -1,7 +1,9 @@
 package com.bankproject.bank.service.auth;
 
 import com.bankproject.bank.dto.ProfileDTO;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class JwtService implements IJwtService{
     public String generateToken(ProfileDTO profileDTO, Map<String, Object> extraClaims) {
 
         Date issued = new Date(System.currentTimeMillis());
-        Date expiration = new Date( (EXPIRATION_IN_MINUTES * 60 * 100) + issued.getTime());
+        Date expiration = new Date( (EXPIRATION_IN_MINUTES * 60 * 1000) + issued.getTime());
 
         String jwt = Jwts.builder()
 
@@ -44,11 +46,23 @@ public class JwtService implements IJwtService{
         return jwt;
     }
 
+    @Override
+    public String extractUsername(String jwt) {
+
+        return extractAllClaims(jwt).getSubject();
+    }
+
+    private Claims extractAllClaims(String jwt) {
+
+     return Jwts.parser().verifyWith( generateKey()).build()
+                .parseSignedClaims(jwt).getPayload();
+    }
+
     private SecretKey generateKey() {
 
-        byte[] key = SECRET_KEY.getBytes();
+        byte[] passwordDecoded = Decoders.BASE64.decode(SECRET_KEY);
 
-        return Keys.hmacShaKeyFor(key);
+        return Keys.hmacShaKeyFor(passwordDecoded);
 
     }
 

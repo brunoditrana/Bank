@@ -6,4 +6,6 @@ import com.bankproject.bank.dto.response.ProfileResponse;
 public interface IProfileService {
 
     ProfileDTO createProfile(ProfileDTO profileDTO);
+
+    ProfileDTO findByUsername(String username);
 }

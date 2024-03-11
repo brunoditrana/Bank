@@ -7,4 +7,6 @@ import java.util.Map;
 public interface IJwtService {
 
     String generateToken(ProfileDTO profileDTO, Map<String, Object> mpa);
+
+    String extractUsername(String jwt);
 }

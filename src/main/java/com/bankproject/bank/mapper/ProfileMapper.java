@@ -21,6 +21,8 @@ public interface ProfileMapper {
 
     ProfileDTO toDTO(ProfileRequest profileRequest);
 
+    ProfileDTO toDTO(ProfileUserDetailsService prf);
+
     ProfileResponse toResponse(ProfileDTO profileDTO);
 
 
