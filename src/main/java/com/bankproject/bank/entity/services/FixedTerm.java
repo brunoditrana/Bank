@@ -2,7 +2,7 @@ package com.bankproject.bank.entity.services;
 
 
 import com.bankproject.bank.entity.Account;
-import com.bankproject.bank.entity.Enum.FixedTermDuration;
+import com.bankproject.bank.entity.Enum.FixedTermDurationEnum;
 import com.bankproject.bank.entity.Services;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,7 +36,7 @@ public class FixedTerm {
 
     @Column(name = "fixed_term_duration", nullable = false)
     @Enumerated(EnumType.ORDINAL)
-    private FixedTermDuration fixedTermDuration;
+    private FixedTermDurationEnum fixedTermDurationEnum;
 
     @OneToOne(mappedBy = "fixedTerm")
     private Services services;

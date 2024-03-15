@@ -25,7 +25,7 @@ public class ProfileService implements IProfileService{
         profDTO.setPassword(passwordEncoder.encode(profileDTO.getPassword()));
         profDTO.setName(profileDTO.getName());
         profDTO.setLastName(profileDTO.getLastName());
-        profDTO.setRole(Role.ROLE_CUSTOMER);
+        profDTO.setRole(Role.CUSTOMER);
 
 
       return profileAdapter.save(profDTO);

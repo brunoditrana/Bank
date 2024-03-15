@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
@@ -40,11 +41,13 @@ public class ProfileUserDetailsService implements UserDetails {
 
         if (role == null || role.getPermissions() == null ) return null;
 
-       return role.getPermissions().stream()
+       List<SimpleGrantedAuthority> authorities = role.getPermissions().stream()
                 .map(Enum::name)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
+       authorities.add(new SimpleGrantedAuthority("ROLE_" + this.role.name()));
+       return authorities;
     }
 
     @Override

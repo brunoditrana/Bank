@@ -1,6 +1,6 @@
 package com.bankproject.bank.entity.Enum;
 
-public enum FixedTermDuration {
+public enum FixedTermDurationEnum {
 
     ONE_MONTH(1),
     THREE_MONTH(3),
@@ -9,7 +9,7 @@ public enum FixedTermDuration {
 
     private final Integer months;
 
-    FixedTermDuration(Integer months) {
+    FixedTermDurationEnum(Integer months) {
         this.months = months;
     }
 

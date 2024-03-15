@@ -5,69 +5,70 @@ import java.util.List;
 
 public enum Role {
 
-    ROLE_ADMINISTRATOR(Arrays.asList(
-            RolePermission.CREATE_PROFILE,
-            RolePermission.CREATE_BRANCH,
-            RolePermission.CREATE_ACCOUNT,
-            RolePermission.CREATE_SERVICE,
+    ADMINISTRATOR(Arrays.asList(
+            RolePermissionEnum.CREATE_PROFILE,
+            RolePermissionEnum.CREATE_BRANCH,
+            RolePermissionEnum.CREATE_ACCOUNT,
+            RolePermissionEnum.CREATE_SERVICE,
 
-            RolePermission.READ_ALL_PROFILES,
-            RolePermission.READ_ONE_PROFILE,
-            RolePermission.READ_ALL_BRANCHES,
-            RolePermission.READ_ONE_BRANCH,
-            RolePermission.READ_ALL_ACCOUNTS,
-            RolePermission.READ_ONE_ACCOUNT,
-            RolePermission.READ_ALL_SERVICES,
-            RolePermission.READ_ONE_SERVICE,
+            RolePermissionEnum.READ_ALL_PROFILES,
+      
+            RolePermissionEnum.READ_ONE_PROFILE,
+            RolePermissionEnum.READ_ALL_BRANCHES,
+            RolePermissionEnum.READ_ONE_BRANCH,
+            RolePermissionEnum.READ_ALL_ACCOUNTS,
+            RolePermissionEnum.READ_ONE_ACCOUNT,
+            RolePermissionEnum.READ_ALL_SERVICES,
+            RolePermissionEnum.READ_ONE_SERVICE,
 
-            RolePermission.UPDATE_PROFILE,
-            RolePermission.UPDATE_BRANCH,
-            RolePermission.UPDATE_ACCOUNT,
-            RolePermission.UPDATE_SERVICE,
+            RolePermissionEnum.UPDATE_PROFILE,
+            RolePermissionEnum.UPDATE_BRANCH,
+            RolePermissionEnum.UPDATE_ACCOUNT,
+            RolePermissionEnum.UPDATE_SERVICE,
 
-            RolePermission.DELETE_PROFILE,
-            RolePermission.DELETE_BRANCH,
-            RolePermission.DELETE_ACCOUNT,
-            RolePermission.DELETE_SERVICE
+            RolePermissionEnum.DELETE_PROFILE,
+            RolePermissionEnum.DELETE_BRANCH,
+            RolePermissionEnum.DELETE_ACCOUNT,
+            RolePermissionEnum.DELETE_SERVICE
     )),
-    ROLE_ASSISTANT_ADMINISTRATOR(Arrays.asList(
-            RolePermission.READ_ALL_PROFILES,
-            RolePermission.READ_ONE_PROFILE,
-            RolePermission.READ_ALL_BRANCHES,
-            RolePermission.READ_ONE_BRANCH,
-            RolePermission.READ_ALL_ACCOUNTS,
-            RolePermission.READ_ONE_ACCOUNT,
-            RolePermission.READ_ALL_SERVICES,
-            RolePermission.READ_ONE_SERVICE,
+    ASSISTANT_ADMINISTRATOR(Arrays.asList(
+            RolePermissionEnum.READ_ALL_PROFILES,
+            RolePermissionEnum.READ_ONE_PROFILE,
+            RolePermissionEnum.READ_ALL_BRANCHES,
+            RolePermissionEnum.READ_ONE_BRANCH,
+            RolePermissionEnum.READ_ALL_ACCOUNTS,
+            RolePermissionEnum.READ_ONE_ACCOUNT,
+            RolePermissionEnum.READ_ALL_SERVICES,
+            RolePermissionEnum.READ_ONE_SERVICE,
 
-            RolePermission.UPDATE_PROFILE,
-            RolePermission.UPDATE_BRANCH,
-            RolePermission.UPDATE_ACCOUNT,
-            RolePermission.UPDATE_SERVICE
+            RolePermissionEnum.UPDATE_PROFILE,
+            RolePermissionEnum.UPDATE_BRANCH,
+            RolePermissionEnum.UPDATE_ACCOUNT,
+            RolePermissionEnum.UPDATE_SERVICE
     )),
-    ROLE_CUSTOMER(Arrays.asList(
-            RolePermission.CREATE_PROFILE,
+    CUSTOMER(Arrays.asList(
+            RolePermissionEnum.CREATE_PROFILE,
 
-            RolePermission.READ_ALL_PROFILES,
-            RolePermission.READ_ONE_PROFILE,
-            RolePermission.READ_ALL_BRANCHES,
-            RolePermission.READ_ONE_BRANCH,
-            RolePermission.READ_ALL_ACCOUNTS,
-            RolePermission.READ_ONE_ACCOUNT,
-            RolePermission.READ_ALL_SERVICES,
-            RolePermission.READ_ONE_SERVICE,
+            RolePermissionEnum.READ_ALL_PROFILES,
+            RolePermissionEnum.READ_ONE_PROFILE,
+            RolePermissionEnum.READ_ALL_BRANCHES,
+            RolePermissionEnum.READ_ONE_BRANCH,
+            RolePermissionEnum.READ_ALL_ACCOUNTS,
+            RolePermissionEnum.READ_ONE_ACCOUNT,
+            RolePermissionEnum.READ_ALL_SERVICES,
+            RolePermissionEnum.READ_ONE_SERVICE,
 
-            RolePermission.UPDATE_PROFILE,
-            RolePermission.UPDATE_ACCOUNT
+            RolePermissionEnum.UPDATE_PROFILE,
+            RolePermissionEnum.UPDATE_ACCOUNT
     ));
 
-    private final List<RolePermission> permissions;
+    private final List<RolePermissionEnum> permissions;
 
-    Role(List<RolePermission> permissions) {
+    Role(List<RolePermissionEnum> permissions) {
         this.permissions = permissions;
     }
 
-    public List<RolePermission> getPermissions() {
+    public List<RolePermissionEnum> getPermissions() {
         return permissions;
     }
 }

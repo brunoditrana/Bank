@@ -8,6 +8,8 @@ import com.bankproject.bank.service.auth.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,9 @@ public class ProfileController {
     private IAuthenticationService authService;
 
 
+   // @PreAuthorize("permiteAll")
+    //@PreAuthorize("hasAuthority('ADMINISTRATOR')")
+    @PreAuthorize("hasAuthority('CREATE_PROFILE')")
     @PostMapping
     private ResponseEntity<ProfileResponse> createProfile(@RequestBody ProfileRequest profileRequest){
 

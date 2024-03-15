@@ -1,6 +1,6 @@
 package com.bankproject.bank.entity.Enum;
 
-public enum RolePermission {
+public enum RolePermissionEnum {
 
     CREATE_PROFILE,
     CREATE_BRANCH,

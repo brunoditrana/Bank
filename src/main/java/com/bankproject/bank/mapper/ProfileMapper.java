@@ -28,4 +28,6 @@ public interface ProfileMapper {
 
     ProfileResponse toResponse(ProfileUserDetailsService prf);
 
+    ProfileUserDetailsService toProfileUserDetailsService(ProfileDTO profileDTO);
+
 }
