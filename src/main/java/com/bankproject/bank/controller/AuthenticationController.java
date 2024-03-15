@@ -1,7 +1,7 @@
 package com.bankproject.bank.controller;
 
 import com.bankproject.bank.dto.request.AuthenticationResponse;
-import com.bankproject.bank.dto.response.AuthenticationRequest;
+import com.bankproject.bank.dto.request.AuthenticationRequest;
 
 import com.bankproject.bank.service.auth.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;

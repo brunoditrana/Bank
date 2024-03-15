@@ -1,4 +1,4 @@
-package com.bankproject.bank.dto.response;
+package com.bankproject.bank.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
