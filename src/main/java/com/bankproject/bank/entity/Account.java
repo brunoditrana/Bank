@@ -21,7 +21,7 @@ public class Account {
     private Long idAccount;
 
     @Column(name = "account_number", nullable = false)
-    private String accountNumber;
+    private Long accountNumber;
 
     @Column(name = "type_account", nullable = false)
     private String typeAccount;
