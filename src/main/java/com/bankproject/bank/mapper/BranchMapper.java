@@ -12,6 +12,8 @@ public interface BranchMapper {
     BranchMapper INSTANCE = Mappers.getMapper(BranchMapper.class);
 
 
+    Branch toEntity(BranchDTO branchDTO);
+
     BranchDTO toDTO(Branch branch);
 
     BranchResponse toResponse(BranchDTO branchDTO);

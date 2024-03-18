@@ -1,7 +1,8 @@
-package com.bankproject.bank.dto;
+package com.bankproject.bank.dto.request.services;
 
 import com.bankproject.bank.entity.Account;
-import jakarta.persistence.*;
+import com.bankproject.bank.entity.Services;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,20 +14,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MovementsDTO {
+public class DepositsRequest {
 
-
-
-    private Long idMovements;
-
-    private String typeMovements;
 
     private BigDecimal amount;
 
-    private LocalDate date;
+    private LocalDate depositDate;
 
-    private String description;
+    private Services services;
 
     private Account account;
-
 }

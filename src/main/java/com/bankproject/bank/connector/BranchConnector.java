@@ -22,4 +22,12 @@ public class BranchConnector implements BranchAdapter {
 
         return BranchMapper.INSTANCE.toDTO(branch);
     }
+
+    @Override
+    public BranchDTO createOneBranch(BranchDTO branchDTO) {
+
+        Branch branch = branchRepository.save(BranchMapper.INSTANCE.toEntity(branchDTO));
+
+        return BranchMapper.INSTANCE.toDTO(branch);
+    }
 }

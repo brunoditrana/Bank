@@ -13,6 +13,7 @@ public interface AccountMapper {
     AccountMapper INSTANCE = Mappers.getMapper(AccountMapper.class);
 
 
+    Account toEntity(AccountDTO accountDTO);
     AccountDTO toDTO(Account account);
 
     AccountResponse toResponse(AccountDTO accountDTO);

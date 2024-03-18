@@ -1,4 +1,4 @@
-package com.bankproject.bank.entity.services;
+package com.bankproject.bank.dto.services;
 
 
 import com.bankproject.bank.entity.Account;
@@ -11,35 +11,25 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+public class LoanDTO {
 
-public class Loan {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_loan")
     private Long idLoan;
 
-    @Column(name = "interest_rate", nullable = false)
     private Double interestRate;
 
-    @Column(name = "maximum_amount", nullable = false)
     private BigDecimal maximumAmount;
 
-    @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @OneToOne(mappedBy = "loan")
     private Services services;
 
-    @ManyToOne
-    @JoinColumn(name = "id_account")
     private Account account;
 
 }

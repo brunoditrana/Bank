@@ -1,30 +1,29 @@
 package com.bankproject.bank.dto.request;
 
-
-import jakarta.persistence.Column;
+import com.bankproject.bank.entity.Account;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountRequest {
+public class BranchRequest {
 
 
-    private String accountNumber;
+    private Integer branchCode;
 
-    private String typeAccount;
+    private String branchName;
+
+    private String city;
 
     private LocalDate openingDate;
 
-    private BigDecimal balance;
+    private Integer numberAccount;
 
-    private String state;
 
-    private String username;
 
 }

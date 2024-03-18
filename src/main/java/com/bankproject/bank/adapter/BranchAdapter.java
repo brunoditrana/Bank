@@ -6,4 +6,6 @@ public interface BranchAdapter {
 
     BranchDTO findByBranchCode(Integer branchCode);
 
+    BranchDTO createOneBranch(BranchDTO branchDTO);
+
 }
