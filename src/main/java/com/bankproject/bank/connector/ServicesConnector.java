@@ -1,14 +1,13 @@
 package com.bankproject.bank.connector;
 
 import com.bankproject.bank.adapter.ServicesAdapter;
-import com.bankproject.bank.dto.services.DepositsDTO;
-import com.bankproject.bank.dto.services.ExtractionsDTO;
-import com.bankproject.bank.dto.services.FixedTermDTO;
-import com.bankproject.bank.dto.services.LoanDTO;
+import com.bankproject.bank.dto.services.*;
+import com.bankproject.bank.entity.Services;
 import com.bankproject.bank.entity.services.Deposits;
 import com.bankproject.bank.entity.services.Extractions;
 import com.bankproject.bank.entity.services.FixedTerm;
 import com.bankproject.bank.entity.services.Loan;
+import com.bankproject.bank.mapper.ServicesMapper;
 import com.bankproject.bank.mapper.services.DepositsMapper;
 import com.bankproject.bank.mapper.services.ExtractionsMapper;
 import com.bankproject.bank.mapper.services.FixedTermMapper;
@@ -20,6 +19,8 @@ import com.bankproject.bank.repository.services.FixedTermRepository;
 import com.bankproject.bank.repository.services.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ServicesConnector implements ServicesAdapter {
@@ -38,6 +39,14 @@ public class ServicesConnector implements ServicesAdapter {
 
     @Autowired
     private FixedTermRepository fixedTermRepository;
+
+    @Override
+    public ServicesDTO CreateOneService(ServicesDTO servicesDTO) {
+
+        Services services = servicesRepository.save(ServicesMapper.INSTANCE.toEntity(servicesDTO));
+
+        return ServicesMapper.INSTANCE.toDTO(services);
+    }
 
     @Override
     public LoanDTO createOneLoan(LoanDTO loanDTO) {
@@ -71,5 +80,13 @@ public class ServicesConnector implements ServicesAdapter {
 
         return FixedTermMapper.INSTANCE.toDTO(fixed);
 
+    }
+
+    @Override
+    public List<LoanDTO> getAllLoan() {
+
+        List<Loan> le = loanRepository.findAll();
+
+       return  LoanMapper.INSTANCE.toList(le);
     }
 }

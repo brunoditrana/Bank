@@ -5,10 +5,7 @@ import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.request.services.LoanRequest;
-import com.bankproject.bank.dto.response.services.DepositsResponse;
-import com.bankproject.bank.dto.response.services.ExtractionsResponse;
-import com.bankproject.bank.dto.response.services.FixedTermResponse;
-import com.bankproject.bank.dto.response.services.LoanResponse;
+import com.bankproject.bank.dto.response.services.*;
 import com.bankproject.bank.dto.services.DepositsDTO;
 import com.bankproject.bank.dto.services.ExtractionsDTO;
 import com.bankproject.bank.dto.services.FixedTermDTO;
@@ -20,10 +17,9 @@ import com.bankproject.bank.mapper.services.LoanMapper;
 import com.bankproject.bank.service.IServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/services")
@@ -37,7 +33,7 @@ public class ServicesController {
     @PostMapping("/deposits")
     public ResponseEntity<DepositsResponse> createOneDeposit(@RequestBody DepositsRequest depositsRequest){
 
-        DepositsDTO dto = servicesService.createOneDeposit(depositsRequest);
+        DepositsDTO dto = servicesService.createOneDeposit(DepositsMapper.INSTANCE.toDTO(depositsRequest));
 
         return  ResponseEntity.ok().body(DepositsMapper.INSTANCE.toResponse(dto));
     }
@@ -58,8 +54,6 @@ public class ServicesController {
         return  ResponseEntity.ok().body(FixedTermMapper.INSTANCE.toResponse(dto));
     }
 
-
-
     @PostMapping("/loan")
     public ResponseEntity<LoanResponse> createOneLoan(@RequestBody LoanRequest loanRequest){
 
@@ -67,4 +61,31 @@ public class ServicesController {
 
         return  ResponseEntity.ok().body(LoanMapper.INSTANCE.toResponse(dto));
     }
+
+    @GetMapping("/") // no me convence mucho
+    public ResponseEntity<List<LoanResponse>>  getAllLoan(){
+
+        List<LoanDTO> list = servicesService.getAllLoan();
+
+        return ResponseEntity.ok().body(LoanMapper.INSTANCE.toListResponse(list));
+    }
+
+    @GetMapping("/loanInfo")
+    public ResponseEntity<LoanInfoResponse> loanInfo(){
+
+        LoanInfoResponse loa = servicesService.loanInfo();
+
+        return ResponseEntity.ok().body(loa);
+    }
+
+    @GetMapping("/fixedTermInfo")
+    public ResponseEntity<FixedTermInfoResponse> fixedTermInfo(){
+
+        FixedTermInfoResponse loa = servicesService.fixedTermInfo();
+
+        return ResponseEntity.ok().body(loa);
+    }
+
+
 }
+

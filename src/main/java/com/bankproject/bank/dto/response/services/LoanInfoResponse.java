@@ -1,8 +1,8 @@
-package com.bankproject.bank.dto.request.services;
+package com.bankproject.bank.dto.response.services;
+
 
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Services;
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,12 +14,15 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class DepositsRequest {
+public class LoanInfoResponse {
 
 
-    private BigDecimal amount;
 
-    private LocalDate depositDate;
+    private Double interestRate;
+
+    private BigDecimal maximumAmount;
+
 
 
 }
+

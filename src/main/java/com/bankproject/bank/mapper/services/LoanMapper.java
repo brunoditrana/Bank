@@ -6,6 +6,8 @@ import com.bankproject.bank.entity.services.Loan;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface LoanMapper {
 
@@ -17,5 +19,9 @@ public interface LoanMapper {
     LoanDTO toDTO(Loan loan);
 
     LoanResponse toResponse(LoanDTO loanDTO);
+
+    List<LoanDTO> toList(List<Loan> l);
+
+    List<LoanResponse> toListResponse( List<LoanDTO> l);
 
 }

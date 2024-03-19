@@ -5,14 +5,15 @@ import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.request.services.LoanRequest;
-import com.bankproject.bank.dto.services.DepositsDTO;
-import com.bankproject.bank.dto.services.ExtractionsDTO;
-import com.bankproject.bank.dto.services.FixedTermDTO;
-import com.bankproject.bank.dto.services.LoanDTO;
+import com.bankproject.bank.dto.response.services.FixedTermInfoResponse;
+import com.bankproject.bank.dto.response.services.LoanInfoResponse;
+import com.bankproject.bank.dto.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ServicesService implements IServicesService{
@@ -20,14 +21,37 @@ public class ServicesService implements IServicesService{
     @Autowired
     private ServicesAdapter servicesAdapter;
 
+    @Value("${loan.default-interest-rate}")
+    private Double defaultInterestRate;
+
+    @Value("${loan.default-maximum-amount}")
+    private BigDecimal defaultMaximumAmount;
+
+    @Value("${fixed-term.default-interest-rate}")
+    private Double interestRate;
+
+    @Value("${fixed-term.default-minimum-amount}")
+    private BigDecimal minimumAmount;
+
+    @Override
+    public ServicesDTO CreateOneService(ServicesDTO servicesDTO) {
+
+        ServicesDTO serDTO = new ServicesDTO();
+        serDTO.setServiceName(servicesDTO.getServiceName());
+        serDTO.setDescription(servicesDTO.getDescription());
+
+
+        return servicesAdapter.CreateOneService(servicesDTO);
+    }
+
     @Override
     public LoanDTO createOneLoan(LoanRequest loanRequest) {
 
         //Validar entrada
         LoanDTO loanDTO = new LoanDTO();
 
-        loanDTO.setInterestRate(loanRequest.getInterestRate());
-        loanDTO.setMaximumAmount(loanRequest.getMaximumAmount());
+        loanDTO.setInterestRate(defaultInterestRate);
+        loanDTO.setMaximumAmount(defaultMaximumAmount);
         loanDTO.setAmount(new BigDecimal(0));
         loanDTO.setDate(loanRequest.getDate());
 
@@ -36,7 +60,7 @@ public class ServicesService implements IServicesService{
     }
 
     @Override
-    public DepositsDTO createOneDeposit(DepositsRequest depositsRequest) {
+    public DepositsDTO createOneDeposit(DepositsDTO depositsRequest) {
 
         //Validar entrada
         DepositsDTO depositsDTO = new DepositsDTO();
@@ -66,14 +90,39 @@ public class ServicesService implements IServicesService{
 
         FixedTermDTO dto = new FixedTermDTO();
 
-        dto.setInterestRate(fixedTermDTO.getInterestRate());
-        dto.setMinimumAmount(fixedTermDTO.getMinimumAmount());
+        dto.setInterestRate(interestRate);
+        dto.setMinimumAmount(minimumAmount);
         dto.setAmount(fixedTermDTO.getAmount());
         dto.setDate(fixedTermDTO.getDate());
         dto.setFixedTermDurationEnum(fixedTermDTO.getFixedTermDurationEnum());
 
         return  servicesAdapter.createOneFixedTerm(dto);
 
+    }
+
+    @Override
+    public List<LoanDTO> getAllLoan() {
+
+        return servicesAdapter.getAllLoan();
+    }
+
+    @Override
+    public LoanInfoResponse loanInfo() {
+
+        LoanInfoResponse l = new LoanInfoResponse();
+        l.setMaximumAmount(defaultMaximumAmount);
+        l.setInterestRate(defaultInterestRate);
+        return l;
+    }
+
+    @Override
+    public FixedTermInfoResponse fixedTermInfo() {
+
+        FixedTermInfoResponse f = new FixedTermInfoResponse();
+        f.setInterestRate(interestRate);
+        f.setMinimumAmount(minimumAmount);
+
+        return null;
     }
 
 

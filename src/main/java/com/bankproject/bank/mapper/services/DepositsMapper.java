@@ -1,5 +1,6 @@
 package com.bankproject.bank.mapper.services;
 
+import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.services.DepositsDTO;
 import com.bankproject.bank.entity.services.Deposits;
@@ -11,6 +12,8 @@ public interface DepositsMapper {
 
 
     DepositsMapper INSTANCE = Mappers.getMapper(DepositsMapper.class);
+
+    DepositsDTO toDTO(DepositsRequest request);
 
     Deposits toEntity(DepositsDTO dto);
 

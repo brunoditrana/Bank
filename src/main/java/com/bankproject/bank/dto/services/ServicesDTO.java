@@ -1,8 +1,7 @@
-package com.bankproject.bank.dto.request.services;
+package com.bankproject.bank.dto.services;
 
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Services;
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,12 +13,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class DepositsRequest {
+public class ServicesDTO {
 
 
-    private BigDecimal amount;
+    private Long idServices;
 
-    private LocalDate depositDate;
+    private String serviceName;
 
+    private String description;
 
 }

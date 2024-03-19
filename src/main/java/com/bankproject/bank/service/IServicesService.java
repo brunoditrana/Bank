@@ -4,22 +4,31 @@ import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.request.services.LoanRequest;
-import com.bankproject.bank.dto.services.DepositsDTO;
-import com.bankproject.bank.dto.services.ExtractionsDTO;
-import com.bankproject.bank.dto.services.FixedTermDTO;
-import com.bankproject.bank.dto.services.LoanDTO;
+import com.bankproject.bank.dto.response.services.FixedTermInfoResponse;
+import com.bankproject.bank.dto.response.services.LoanInfoResponse;
+import com.bankproject.bank.dto.services.*;
+
+import java.util.List;
 
 public interface IServicesService {
 
 
+    ServicesDTO CreateOneService(ServicesDTO servicesDTO);
+
     LoanDTO createOneLoan(LoanRequest loanRequest);
 
-    DepositsDTO createOneDeposit(DepositsRequest depositsRequest);
+    DepositsDTO createOneDeposit(DepositsDTO depositsDTO);
 
 
     ExtractionsDTO createOneExtraction(ExtractionsRequest extractionsRequest);
 
     FixedTermDTO createOneFixedTerm(FixedTermRequest fixedTermDTO);
+
+    List<LoanDTO> getAllLoan();
+
+    LoanInfoResponse loanInfo();
+
+    FixedTermInfoResponse fixedTermInfo();
 
 
 }

@@ -48,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String username = jwtService.extractUsername(jwt);
 
         // 4- Setear objeto autthetication dentro del security conrtext holder
-        ProfileUserDetailsService userDetails = profileAdapter.findByUsername(username);
+        ProfileUserDetailsService userDetails = profileAdapter.findByUsernameDetails(username);
 
         UsernamePasswordAuthenticationToken autheToken = new UsernamePasswordAuthenticationToken(
                 username, null, userDetails.getAuthorities()

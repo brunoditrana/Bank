@@ -5,7 +5,10 @@ import com.bankproject.bank.dto.ProfileUserDetailsService;
 
 public interface ProfileAdapter {
 
-    ProfileUserDetailsService findByUsername(String username);
+    ProfileUserDetailsService findByUsernameDetails(String username);
+
+
+    ProfileDTO findByUsername(String username);
 
     ProfileDTO save(ProfileDTO profileDTO);
 

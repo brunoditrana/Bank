@@ -1,5 +1,6 @@
 package com.bankproject.bank.dto;
 
+import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Enum.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +23,5 @@ public class ProfileDTO {
 
     private Role role;
 
-
+    private Account account;
 }

@@ -58,7 +58,7 @@ public class SecurityConfiguration {
     UserDetailsService userDetailsService(){
 
         return (username) -> {
-            return profileAdapter.findByUsername(username);
+            return profileAdapter.findByUsernameDetails(username);
         };
     }
 

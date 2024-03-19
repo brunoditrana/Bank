@@ -16,12 +16,21 @@ public class ProfileConnector implements ProfileAdapter {
     private ProfileRepository profileRepository;
 
     @Override
-    public ProfileUserDetailsService findByUsername(String username) {
+    public ProfileUserDetailsService findByUsernameDetails(String username) {
         Profile profile = profileRepository.findByUsername(username).orElseThrow();
 
         ////// PONER EXCEPTIONS
         return ProfileMapper.INSTANCE.toProfileUserDetails(profile);
 
+    }
+
+    @Override
+    public ProfileDTO findByUsername(String username) {
+
+        //Exepctions
+        Profile p = profileRepository.findByUsername(username).orElseThrow();
+
+        return ProfileMapper.INSTANCE.toDTO(p);
     }
 
     @Override

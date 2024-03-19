@@ -1,13 +1,14 @@
 package com.bankproject.bank.adapter;
 
-import com.bankproject.bank.dto.services.DepositsDTO;
-import com.bankproject.bank.dto.services.ExtractionsDTO;
-import com.bankproject.bank.dto.services.FixedTermDTO;
-import com.bankproject.bank.dto.services.LoanDTO;
+import com.bankproject.bank.dto.services.*;
 import com.bankproject.bank.entity.Services;
+
+import java.util.List;
 
 public interface ServicesAdapter {
 
+
+    ServicesDTO CreateOneService(ServicesDTO servicesDTO);
 
     LoanDTO createOneLoan(LoanDTO loanDTO );
 
@@ -17,4 +18,6 @@ public interface ServicesAdapter {
     ExtractionsDTO createOneExtraction(ExtractionsDTO extractionsDTO);
 
     FixedTermDTO createOneFixedTerm(FixedTermDTO dto);
+
+    List<LoanDTO> getAllLoan();
 }
