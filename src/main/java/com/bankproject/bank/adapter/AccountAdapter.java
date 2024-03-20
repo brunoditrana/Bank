@@ -7,7 +7,7 @@ import com.bankproject.bank.dto.request.AccountRequest;
 public interface AccountAdapter {
 
 
-    AccountDTO findByAccountNumber(Long accountNumber);
+    AccountDTO findByIdAccount(Long idAccount);
 
     AccountDTO createOneAccount(AccountDTO accountDTO);
 }

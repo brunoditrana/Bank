@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class AccountRequest {
 
 
-    private String accountNumber;
+    private Long idAccount;
 
     private String typeAccount;
 

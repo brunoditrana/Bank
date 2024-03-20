@@ -10,6 +10,9 @@ import com.bankproject.bank.mapper.ProfileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Service
 public class AccountService implements IAccountService{
 
@@ -20,31 +23,19 @@ public class AccountService implements IAccountService{
     private IProfileService profileService;
 
     @Override
-    public AccountDTO findByAccountNumber(Long accountNumber) {
+    public AccountDTO findByIdAccount(Long idAccount) {
 
-        return accountAdapter.findByAccountNumber(accountNumber);
+        return accountAdapter.findByIdAccount(idAccount);
     }
 
     @Override
-    public AccountDTO createOneAccount(AccountRequest accountRequest) {
+    public AccountDTO createOneAccount(AccountDTO accountDTO) {
 
-        // validar los datos del Account request
+        accountDTO.setTypeAccount("AGASDSA");
+        accountDTO.setOpeningDate(LocalDate.now());
+        accountDTO.setBalance(BigDecimal.ZERO);
+        accountDTO.setState("Active");
 
-        ProfileDTO profileDTO = profileService.findByUsername(accountRequest.getUsername());
-
-        if (profileDTO == null){
-            //Enviar una Exception
-        }
-
-        AccountDTO accountDTO = new AccountDTO();
-
-        accountDTO.setAccountNumber(accountRequest.getAccountNumber());
-        accountDTO.setTypeAccount(accountRequest.getTypeAccount());
-        accountDTO.setOpeningDate(accountRequest.getOpeningDate());
-        accountDTO.setBalance(accountRequest.getBalance());
-        accountDTO.setState(accountDTO.getState());
-
-        accountDTO.setProfile(ProfileMapper.INSTANCE.toEntity(profileDTO));
 
        return accountAdapter.createOneAccount(accountDTO);
 

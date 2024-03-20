@@ -1,7 +1,9 @@
 package com.bankproject.bank.service;
 
+import com.bankproject.bank.adapter.AccountServiceAdapter;
 import com.bankproject.bank.adapter.ServicesAdapter;
-import com.bankproject.bank.dto.request.services.DepositsRequest;
+import com.bankproject.bank.dto.AccountDTO;
+import com.bankproject.bank.dto.AccountServiceDTO;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.request.services.LoanRequest;
@@ -20,6 +22,9 @@ public class ServicesService implements IServicesService{
 
     @Autowired
     private ServicesAdapter servicesAdapter;
+
+    @Autowired
+    private AccountServiceAdapter accountServiceAdapter;
 
     @Value("${loan.default-interest-rate}")
     private Double defaultInterestRate;
@@ -60,16 +65,8 @@ public class ServicesService implements IServicesService{
     }
 
     @Override
-    public DepositsDTO createOneDeposit(DepositsDTO depositsRequest) {
-
-        //Validar entrada
-        DepositsDTO depositsDTO = new DepositsDTO();
-
-        depositsDTO.setAmount(new BigDecimal(0));
-        depositsDTO.setDepositDate(depositsRequest.getDepositDate());
-
+    public DepositsDTO createOneDeposit(DepositsDTO depositsDTO) {
         return servicesAdapter.createOneDeposit(depositsDTO);
-
 
     }
 
@@ -123,6 +120,16 @@ public class ServicesService implements IServicesService{
         f.setMinimumAmount(minimumAmount);
 
         return null;
+    }
+
+    @Override
+    public void associateServiceWithAccount(AccountDTO accountDTO, ServicesDTO servicesDTO) {
+
+        AccountServiceDTO accountServiceDTO = new AccountServiceDTO();
+        accountServiceDTO.setAccount(accountDTO);
+        accountServiceDTO.setServices(servicesDTO);
+
+        accountServiceAdapter.save(accountServiceDTO);
     }
 
 

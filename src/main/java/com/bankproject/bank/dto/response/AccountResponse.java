@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class AccountResponse {
 
 
-    private String accountNumber;
+    private Long idAccount;
 
     private String typeAccount;
 

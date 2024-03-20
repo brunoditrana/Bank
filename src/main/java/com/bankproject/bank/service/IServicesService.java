@@ -1,5 +1,6 @@
 package com.bankproject.bank.service;
 
+import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
@@ -29,6 +30,8 @@ public interface IServicesService {
     LoanInfoResponse loanInfo();
 
     FixedTermInfoResponse fixedTermInfo();
+
+    void associateServiceWithAccount(AccountDTO accountDTO, ServicesDTO servicesDTO);
 
 
 }

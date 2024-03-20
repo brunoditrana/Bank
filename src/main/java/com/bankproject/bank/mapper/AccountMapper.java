@@ -1,6 +1,7 @@
 package com.bankproject.bank.mapper;
 
 import com.bankproject.bank.dto.AccountDTO;
+import com.bankproject.bank.dto.request.AccountRequest;
 import com.bankproject.bank.dto.response.AccountResponse;
 import com.bankproject.bank.entity.Account;
 
@@ -15,6 +16,8 @@ public interface AccountMapper {
 
     Account toEntity(AccountDTO accountDTO);
     AccountDTO toDTO(Account account);
+
+    AccountDTO toDTO(AccountRequest account);
 
     AccountResponse toResponse(AccountDTO accountDTO);
 }

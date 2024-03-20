@@ -20,9 +20,11 @@ public class AccountConnector implements AccountAdapter {
 
 
     @Override
-    public AccountDTO findByAccountNumber(Long accountNumber) {
+    public AccountDTO findByIdAccount(Long idAccount ) {
 
-        return AccountMapper.INSTANCE.toDTO( accountRepository.findByAccountNumber(accountNumber));
+        return AccountMapper.INSTANCE.toDTO( accountRepository.findById(idAccount).orElseThrow()
+        //EXCEPTIONSSS
+        );
     }
 
     @Override

@@ -23,5 +23,5 @@ public class ProfileDTO {
 
     private Role role;
 
-    private Account account;
+    private AccountDTO account;
 }

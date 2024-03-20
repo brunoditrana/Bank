@@ -1,7 +1,9 @@
 package com.bankproject.bank.service;
 
 import com.bankproject.bank.adapter.ProfileAdapter;
+import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.dto.ProfileDTO;
+import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.services.DepositsDTO;
@@ -9,6 +11,7 @@ import com.bankproject.bank.dto.services.ServicesDTO;
 import com.bankproject.bank.entity.Enum.Role;
 import com.bankproject.bank.mapper.ProfileMapper;
 import com.bankproject.bank.mapper.ServicesMapper;
+import com.bankproject.bank.mapper.services.DepositsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +29,9 @@ public class ProfileService implements IProfileService{
     @Autowired
     private  IServicesService servicesService;
 
+    @Autowired
+    private  IAccountService accountService;
+
     @Value("${service.deposit.name}")
     private String depositServiceName;
 
@@ -42,22 +48,35 @@ public class ProfileService implements IProfileService{
         profDTO.setLastName(profileDTO.getLastName());
         profDTO.setRole(Role.CUSTOMER);
 
+        AccountDTO accountDTO = new AccountDTO();
+
+        accountDTO.setProfile(profileDTO);
+
+        accountService.createOneAccount(accountDTO);
+
 
       return profileAdapter.save(profDTO);
 
     }
 
+
+    @Override
+    public ProfileUserDetailsService findByUsernameDetails(String username) {
+
+        return profileAdapter.findByUsernameDetails(username);
+
+    }
     @Override
     public ProfileDTO findByUsername(String username) {
 
-        return ProfileMapper.INSTANCE.toDTO( profileAdapter.findByUsernameDetails(username));
+        return profileAdapter.findByUsername(username);
 
     }
 
     @Override
     public DepositsResponse processDeposit(String username, DepositsRequest req) {
 
-        boolean valid = validateProfile(username);
+        validateProfile(username);
 
         ProfileDTO profDTO = findByUsername(username);
 
@@ -67,14 +86,18 @@ public class ProfileService implements IProfileService{
 
         DepositsDTO depositsDTO = new DepositsDTO();
 
+        AccountDTO accountDTO = accountService.findByIdAccount(profDTO.getAccount().getIdAccount());
+
+        servicesService.associateServiceWithAccount(accountDTO,servicesDTO);
 
         depositsDTO.setAmount(req.getAmount());
         depositsDTO.setDepositDate(req.getDepositDate());
-        depositsDTO.setAccount(profDTO.getAccount());
-        depositsDTO.setServices(ServicesMapper.INSTANCE.toEntity(servicesDTO));
+        depositsDTO.setServices(servicesDTO);
+        depositsDTO.setAccount(accountDTO);
 
         servicesService.createOneDeposit(depositsDTO);
-        return null;
+
+        return DepositsMapper.INSTANCE.toResponse(depositsDTO);
     }
 
 

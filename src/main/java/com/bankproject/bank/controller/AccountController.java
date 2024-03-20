@@ -17,10 +17,10 @@ public class AccountController {
     private IAccountService accountService;
 
 
-    @GetMapping("/{accountNumber}")
-    public ResponseEntity<AccountResponse> findByNumberAccount(@PathVariable Long accountNumber){
+    @GetMapping("/{idAccount}")
+    public ResponseEntity<AccountResponse> findByNumberAccount(@PathVariable Long idAccount){
 
-        AccountDTO accountDTO = accountService.findByAccountNumber(accountNumber);
+        AccountDTO accountDTO = accountService.findByIdAccount(idAccount);
 
         return ResponseEntity.ok().body(AccountMapper.INSTANCE.toResponse(accountDTO));
 
@@ -29,7 +29,7 @@ public class AccountController {
     @PostMapping("/")
     public  ResponseEntity<AccountResponse> createOneAccount(@RequestBody AccountRequest accountRequest){
 
-        AccountDTO accountDTO = accountService.createOneAccount(accountRequest);
+        AccountDTO accountDTO = accountService.createOneAccount(AccountMapper.INSTANCE.toDTO(accountRequest));
 
         return ResponseEntity.ok().body(AccountMapper.INSTANCE.toResponse(accountDTO));
     }

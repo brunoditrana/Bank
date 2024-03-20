@@ -47,7 +47,7 @@ public class ProfileController {
 
     }
 
-    @PostMapping("/deposit/{}")
+    @PostMapping("/deposit/{username}")
     public  ResponseEntity<DepositsResponse> processDeposit(@PathVariable String username, @RequestBody DepositsRequest dep){
 
         DepositsResponse depositsResponse = profileService.processDeposit(username, dep);

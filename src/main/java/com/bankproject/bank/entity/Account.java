@@ -20,9 +20,6 @@ public class Account {
     @Column(name = "id_account")
     private Long idAccount;
 
-    @Column(name = "account_number", nullable = false)
-    private Long accountNumber;
-
     @Column(name = "type_account", nullable = false)
     private String typeAccount;
 

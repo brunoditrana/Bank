@@ -7,7 +7,7 @@ import com.bankproject.bank.dto.response.AccountResponse;
 public interface IAccountService {
 
 
-    AccountDTO findByAccountNumber(Long accountNumber);
+    AccountDTO findByIdAccount(Long idAccount);
 
-    AccountDTO createOneAccount(AccountRequest accountRequest);
+    AccountDTO createOneAccount(AccountDTO accountDTO);
 }

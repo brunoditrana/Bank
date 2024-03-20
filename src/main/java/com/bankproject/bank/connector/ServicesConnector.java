@@ -1,5 +1,6 @@
 package com.bankproject.bank.connector;
 
+import com.bankproject.bank.adapter.AccountServiceAdapter;
 import com.bankproject.bank.adapter.ServicesAdapter;
 import com.bankproject.bank.dto.services.*;
 import com.bankproject.bank.entity.Services;
@@ -39,6 +40,8 @@ public class ServicesConnector implements ServicesAdapter {
 
     @Autowired
     private FixedTermRepository fixedTermRepository;
+
+
 
     @Override
     public ServicesDTO CreateOneService(ServicesDTO servicesDTO) {

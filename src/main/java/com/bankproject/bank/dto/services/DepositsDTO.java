@@ -1,5 +1,6 @@
 package com.bankproject.bank.dto.services;
 
+import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Services;
 import jakarta.persistence.*;
@@ -23,7 +24,7 @@ public class DepositsDTO {
 
     private LocalDate depositDate;
 
-    private Services services;
+    private ServicesDTO services;
 
-    private Account account;
+    private AccountDTO account;
 }

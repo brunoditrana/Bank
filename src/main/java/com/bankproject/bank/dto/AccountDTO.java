@@ -25,8 +25,6 @@ public class AccountDTO {
 
         private Long idAccount;
 
-        private String accountNumber;
-
         private String typeAccount;
 
         private LocalDate openingDate;
@@ -35,12 +33,11 @@ public class AccountDTO {
 
         private String state;
 
-        private Profile profile;
+        private ProfileDTO profile;
 
-        private Branch branch;
+        private BranchDTO branch;
 
-        private List<Movements> movements;
-
+        private List<MovementsDTO> movements;
 
         private List<AccountService> accountServices;
 
