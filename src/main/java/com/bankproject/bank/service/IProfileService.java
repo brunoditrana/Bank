@@ -4,9 +4,13 @@ import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
+import com.bankproject.bank.dto.request.services.LoanRequest;
 import com.bankproject.bank.dto.response.ProfileResponse;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.response.services.ExtractionsResponse;
+import com.bankproject.bank.dto.response.services.LoanResponse;
+
+import java.math.BigDecimal;
 
 public interface IProfileService {
 
@@ -19,5 +23,9 @@ public interface IProfileService {
 
     ExtractionsResponse processExtraction(String username, ExtractionsRequest ext);
 
+    LoanResponse processLoan(String username, LoanRequest loan);
+
     ProfileUserDetailsService findByUsernameDetails(String username);
+
+    BigDecimal calculateMonthlyPayment(BigDecimal loanAmount, double interestRate, int numberOfInstallments);
 }

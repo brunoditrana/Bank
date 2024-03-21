@@ -1,6 +1,7 @@
 package com.bankproject.bank.dto.services;
 
 
+import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Services;
 import jakarta.persistence.*;
@@ -22,15 +23,17 @@ public class LoanDTO {
 
     private Double interestRate;
 
-    private BigDecimal maximumAmount;
+    private Integer numberOfInstallments;
 
-    private BigDecimal amount;
+    private BigDecimal totalLoanAmount;
+
+    private BigDecimal monthlyPayment;
 
     private LocalDate date;
 
-    private Services services;
+    private ServicesDTO services;
 
-    private Account account;
+    private AccountDTO account;
 
 }
 

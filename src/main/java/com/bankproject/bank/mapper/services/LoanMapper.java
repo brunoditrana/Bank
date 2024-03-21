@@ -1,5 +1,6 @@
 package com.bankproject.bank.mapper.services;
 
+import com.bankproject.bank.dto.request.services.LoanRequest;
 import com.bankproject.bank.dto.response.services.LoanResponse;
 import com.bankproject.bank.dto.services.LoanDTO;
 import com.bankproject.bank.entity.services.Loan;
@@ -17,6 +18,8 @@ public interface LoanMapper {
     Loan toEntity(LoanDTO loanDTO);
 
     LoanDTO toDTO(Loan loan);
+
+    LoanDTO toDTO(LoanRequest loanRequest);
 
     LoanResponse toResponse(LoanDTO loanDTO);
 

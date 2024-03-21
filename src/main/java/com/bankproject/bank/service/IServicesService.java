@@ -16,7 +16,7 @@ public interface IServicesService {
 
     ServicesDTO CreateOneService(ServicesDTO servicesDTO);
 
-    LoanDTO createOneLoan(LoanRequest loanRequest);
+    LoanDTO createOneLoan(LoanDTO loanDTO);
 
     DepositsDTO createOneDeposit(DepositsDTO depositsDTO);
 

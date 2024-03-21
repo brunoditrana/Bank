@@ -5,9 +5,11 @@ import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.ProfileRequest;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
+import com.bankproject.bank.dto.request.services.LoanRequest;
 import com.bankproject.bank.dto.response.ProfileResponse;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.response.services.ExtractionsResponse;
+import com.bankproject.bank.dto.response.services.LoanResponse;
 import com.bankproject.bank.mapper.ProfileMapper;
 import com.bankproject.bank.service.IProfileService;
 import com.bankproject.bank.service.auth.IAuthenticationService;
@@ -54,6 +56,7 @@ public class ProfileController {
 
         DepositsResponse depositsResponse = profileService.processDeposit(username, dep);
 
+
         return  ResponseEntity.ok().body(depositsResponse);
     }
 
@@ -63,6 +66,15 @@ public class ProfileController {
         ExtractionsResponse extractionsResp = profileService.processExtraction(username,ext);
 
         return ResponseEntity.ok().body(extractionsResp);
+
+    }
+    @PostMapping("/loan/{username}")
+    private ResponseEntity<LoanResponse> processLoan(@PathVariable String username, @RequestBody LoanRequest loan){
+
+        LoanResponse loanResponse = profileService.processLoan(username, loan);
+        loanResponse.setMessage("Loan processed successfully");
+
+        return ResponseEntity.ok().body(loanResponse);
 
     }
 

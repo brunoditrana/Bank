@@ -32,11 +32,6 @@ public class ServicesService implements IServicesService{
     @Value("${loan.default-maximum-amount}")
     private BigDecimal defaultMaximumAmount;
 
-    @Value("${fixed-term.default-interest-rate}")
-    private Double interestRate;
-
-    @Value("${fixed-term.default-minimum-amount}")
-    private BigDecimal minimumAmount;
 
     @Override
     public ServicesDTO CreateOneService(ServicesDTO servicesDTO) {
@@ -50,15 +45,9 @@ public class ServicesService implements IServicesService{
     }
 
     @Override
-    public LoanDTO createOneLoan(LoanRequest loanRequest) {
+    public LoanDTO createOneLoan(LoanDTO loanDTO) {
 
-        //Validar entrada
-        LoanDTO loanDTO = new LoanDTO();
 
-        loanDTO.setInterestRate(defaultInterestRate);
-        loanDTO.setMaximumAmount(defaultMaximumAmount);
-        loanDTO.setAmount(new BigDecimal(0));
-        loanDTO.setDate(loanRequest.getDate());
 
         return servicesAdapter.createOneLoan(loanDTO);
 
@@ -81,8 +70,8 @@ public class ServicesService implements IServicesService{
 
         FixedTermDTO dto = new FixedTermDTO();
 
-        dto.setInterestRate(interestRate);
-        dto.setMinimumAmount(minimumAmount);
+       // dto.setInterestRate(interestRate);
+        //dto.setMinimumAmount(minimumAmount);
         dto.setAmount(fixedTermDTO.getAmount());
         dto.setDate(fixedTermDTO.getDate());
         dto.setFixedTermDurationEnum(fixedTermDTO.getFixedTermDurationEnum());
@@ -110,8 +99,8 @@ public class ServicesService implements IServicesService{
     public FixedTermInfoResponse fixedTermInfo() {
 
         FixedTermInfoResponse f = new FixedTermInfoResponse();
-        f.setInterestRate(interestRate);
-        f.setMinimumAmount(minimumAmount);
+      //  f.setInterestRate(interestRate);
+        //f.setMinimumAmount(minimumAmount);
 
         return null;
     }

@@ -55,7 +55,7 @@ public class ServicesController {
     @PostMapping("/loan")
     public ResponseEntity<LoanResponse> createOneLoan(@RequestBody LoanRequest loanRequest){
 
-        LoanDTO dto = servicesService.createOneLoan(loanRequest);
+        LoanDTO dto = servicesService.createOneLoan(LoanMapper.INSTANCE.toDTO(loanRequest));
 
         return  ResponseEntity.ok().body(LoanMapper.INSTANCE.toResponse(dto));
     }

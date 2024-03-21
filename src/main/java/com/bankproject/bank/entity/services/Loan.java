@@ -26,11 +26,15 @@ public class Loan {
     @Column(name = "interest_rate", nullable = false)
     private Double interestRate;
 
-    @Column(name = "maximum_amount", nullable = false)
-    private BigDecimal maximumAmount;
+    @Column(name = "number_of_installments", nullable = false)
+    private Integer numberOfInstallments;
 
-    @Column(name = "amount", nullable = false)
-    private BigDecimal amount;
+    @Column(name = "total_loan_amount", nullable = false)
+    private BigDecimal totalLoanAmount;
+
+    @Column(name = "monthly_payment", nullable = false)
+    private BigDecimal monthlyPayment;
+
 
     @Column(name = "date", nullable = false)
     private LocalDate date;

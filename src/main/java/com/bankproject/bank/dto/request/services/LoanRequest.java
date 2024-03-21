@@ -12,17 +12,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class LoanRequest {
 
-
-
-
     private Double interestRate;
 
-    private BigDecimal maximumAmount;
+    private BigDecimal totalLoanAmount;
 
-    private BigDecimal amount;
-
-    private LocalDate date;
-
-
+    private Integer numberOfInstallments;
 
 }

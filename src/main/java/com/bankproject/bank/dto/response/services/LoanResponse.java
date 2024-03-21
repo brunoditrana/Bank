@@ -1,5 +1,7 @@
 package com.bankproject.bank.dto.response.services;
 
+import com.bankproject.bank.dto.AccountDTO;
+import com.bankproject.bank.dto.services.ServicesDTO;
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Services;
 import lombok.AllArgsConstructor;
@@ -19,15 +21,18 @@ public class LoanResponse {
 
     private Double interestRate;
 
-    private BigDecimal maximumAmount;
+    private Integer numberOfInstallments;
 
-    private BigDecimal amount;
+    private BigDecimal totalLoanAmount;
 
-    private LocalDate date;
+    private BigDecimal monthlyPayment;
 
-    private Services services;
+    private ServicesDTO services;
 
-    private Account account;
+    private AccountDTO account;
+
+    private String message;
+
 
 
 }
