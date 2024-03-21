@@ -31,7 +31,7 @@ public class AccountService implements IAccountService{
     @Override
     public AccountDTO createOneAccount(AccountDTO accountDTO) {
 
-        accountDTO.setTypeAccount("AGASDSA");
+
         accountDTO.setOpeningDate(LocalDate.now());
         accountDTO.setBalance(BigDecimal.ZERO);
         accountDTO.setState("Active");

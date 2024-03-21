@@ -4,8 +4,10 @@ import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.ProfileRequest;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
+import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.response.ProfileResponse;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
+import com.bankproject.bank.dto.response.services.ExtractionsResponse;
 import com.bankproject.bank.mapper.ProfileMapper;
 import com.bankproject.bank.service.IProfileService;
 import com.bankproject.bank.service.auth.IAuthenticationService;
@@ -54,5 +56,15 @@ public class ProfileController {
 
         return  ResponseEntity.ok().body(depositsResponse);
     }
+
+    @PostMapping("/extraction/{username}")
+    public  ResponseEntity<ExtractionsResponse> processExtractions(@PathVariable String username, @RequestBody ExtractionsRequest ext) {
+
+        ExtractionsResponse extractionsResp = profileService.processExtraction(username,ext);
+
+        return ResponseEntity.ok().body(extractionsResp);
+
+    }
+
 
 }

@@ -1,6 +1,4 @@
 package com.bankproject.bank.controller;
-
-
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
@@ -41,7 +39,7 @@ public class ServicesController {
     @PostMapping("/extractions")
     public ResponseEntity<ExtractionsResponse> createOneExtraction(@RequestBody ExtractionsRequest extractionsRequest){
 
-        ExtractionsDTO dto = servicesService.createOneExtraction(extractionsRequest);
+        ExtractionsDTO dto = servicesService.createOneExtraction(ExtractionsMapper.INSTANCE.toDTO(extractionsRequest));
 
         return  ResponseEntity.ok().body(ExtractionsMapper.INSTANCE.toResponse(dto));
     }

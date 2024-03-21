@@ -15,16 +15,6 @@ import java.time.LocalDate;
 public class AccountRequest {
 
 
-    private Long idAccount;
-
-    private String typeAccount;
-
-    private LocalDate openingDate;
-
-    private BigDecimal balance;
-
-    private String state;
-
     private String username;
 
 }

@@ -26,11 +26,5 @@ public class AccountController {
 
     }
 
-    @PostMapping("/")
-    public  ResponseEntity<AccountResponse> createOneAccount(@RequestBody AccountRequest accountRequest){
 
-        AccountDTO accountDTO = accountService.createOneAccount(AccountMapper.INSTANCE.toDTO(accountRequest));
-
-        return ResponseEntity.ok().body(AccountMapper.INSTANCE.toResponse(accountDTO));
-    }
 }

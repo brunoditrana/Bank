@@ -17,13 +17,7 @@ import java.math.BigDecimal;
 public class ExtractionsRequest {
 
 
-
     private BigDecimal amount;
 
-    private BigDecimal commission;
-
-    private Services services;
-
-    private Account account;
 }
 

@@ -1,6 +1,8 @@
 package com.bankproject.bank.dto.response.services;
 
 
+import com.bankproject.bank.dto.AccountDTO;
+import com.bankproject.bank.dto.services.ServicesDTO;
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Services;
 import jakarta.persistence.Entity;
@@ -20,10 +22,9 @@ public class ExtractionsResponse {
 
     private BigDecimal amount;
 
-    private BigDecimal commission;
 
-    private Services services;
+    private ServicesDTO services;
 
-    private Account account;
+    private AccountDTO account;
 }
 

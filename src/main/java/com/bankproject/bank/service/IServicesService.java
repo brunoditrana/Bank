@@ -21,7 +21,7 @@ public interface IServicesService {
     DepositsDTO createOneDeposit(DepositsDTO depositsDTO);
 
 
-    ExtractionsDTO createOneExtraction(ExtractionsRequest extractionsRequest);
+    ExtractionsDTO createOneExtraction(ExtractionsDTO extractionsDTO);
 
     FixedTermDTO createOneFixedTerm(FixedTermRequest fixedTermDTO);
 

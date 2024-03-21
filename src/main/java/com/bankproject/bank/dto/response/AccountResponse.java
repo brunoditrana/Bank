@@ -17,8 +17,6 @@ public class AccountResponse {
 
     private Long idAccount;
 
-    private String typeAccount;
-
     private LocalDate openingDate;
 
     private BigDecimal balance;

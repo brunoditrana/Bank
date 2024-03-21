@@ -71,15 +71,9 @@ public class ServicesService implements IServicesService{
     }
 
     @Override
-    public ExtractionsDTO createOneExtraction(ExtractionsRequest extractionsRequest) {
+    public ExtractionsDTO createOneExtraction(ExtractionsDTO extractDTO) {
 
-        ExtractionsDTO extractionsDTO = new ExtractionsDTO();
-
-        extractionsDTO.setAmount(extractionsRequest.getAmount());
-        extractionsDTO.setCommission(extractionsRequest.getCommission());
-
-
-        return servicesAdapter.createOneExtraction(extractionsDTO);
+        return servicesAdapter.createOneExtraction(extractDTO);
     }
 
     @Override

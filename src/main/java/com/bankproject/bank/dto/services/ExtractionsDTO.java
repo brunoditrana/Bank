@@ -1,6 +1,7 @@
 package com.bankproject.bank.dto.services;
 
 
+import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Services;
 import jakarta.persistence.*;
@@ -21,10 +22,8 @@ public class ExtractionsDTO {
 
     private BigDecimal amount;
 
-    private BigDecimal commission;
+    private ServicesDTO services;
 
-    private Services services;
-
-    private Account account;
+    private AccountDTO account;
 }
 

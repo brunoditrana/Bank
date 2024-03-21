@@ -1,5 +1,6 @@
 package com.bankproject.bank.mapper.services;
 
+import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.response.services.ExtractionsResponse;
 import com.bankproject.bank.dto.services.DepositsDTO;
@@ -19,5 +20,8 @@ public interface ExtractionsMapper {
 
     ExtractionsDTO toDTO(Extractions entity);
 
+    ExtractionsDTO toDTO(ExtractionsRequest req);
     ExtractionsResponse toResponse(ExtractionsDTO dto);
+
+
 }

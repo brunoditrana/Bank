@@ -24,9 +24,6 @@ public class Extractions {
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "commission", nullable = false)
-    private BigDecimal commission;
-
     @OneToOne(mappedBy = "extractions")
     private Services services;
 

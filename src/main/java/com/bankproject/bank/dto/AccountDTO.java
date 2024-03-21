@@ -25,8 +25,6 @@ public class AccountDTO {
 
         private Long idAccount;
 
-        private String typeAccount;
-
         private LocalDate openingDate;
 
         private BigDecimal balance;
@@ -39,7 +37,7 @@ public class AccountDTO {
 
         private List<MovementsDTO> movements;
 
-        private List<AccountService> accountServices;
+        private List<AccountServiceDTO> accountServices;
 
 
 }

@@ -5,17 +5,23 @@ import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
+import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
+import com.bankproject.bank.dto.response.services.ExtractionsResponse;
 import com.bankproject.bank.dto.services.DepositsDTO;
+import com.bankproject.bank.dto.services.ExtractionsDTO;
 import com.bankproject.bank.dto.services.ServicesDTO;
 import com.bankproject.bank.entity.Enum.Role;
 import com.bankproject.bank.mapper.ProfileMapper;
 import com.bankproject.bank.mapper.ServicesMapper;
 import com.bankproject.bank.mapper.services.DepositsMapper;
+import com.bankproject.bank.mapper.services.ExtractionsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 @Service
 public class ProfileService implements IProfileService{
@@ -32,11 +38,6 @@ public class ProfileService implements IProfileService{
     @Autowired
     private  IAccountService accountService;
 
-    @Value("${service.deposit.name}")
-    private String depositServiceName;
-
-    @Value("${service.deposit.description}")
-    private String depositServiceDescription;
 
     public ProfileDTO createProfile(ProfileDTO profileDTO){
 
@@ -81,8 +82,8 @@ public class ProfileService implements IProfileService{
         ProfileDTO profDTO = findByUsername(username);
 
         ServicesDTO servicesDTO = new ServicesDTO();
-        servicesDTO.setDescription(depositServiceDescription);
-        servicesDTO.setServiceName(depositServiceName);
+        servicesDTO.setServiceName("Deposit");
+        servicesDTO.setDescription("Deposit service for bank accounts");
 
         DepositsDTO depositsDTO = new DepositsDTO();
 
@@ -90,7 +91,13 @@ public class ProfileService implements IProfileService{
 
         servicesService.associateServiceWithAccount(accountDTO,servicesDTO);
 
-        depositsDTO.setAmount(req.getAmount());
+        BigDecimal depositAmount = req.getAmount();
+        BigDecimal currentBalance = accountDTO.getBalance();
+        BigDecimal newBalance = currentBalance.add(depositAmount);
+
+        accountDTO.setBalance(newBalance);
+
+        depositsDTO.setAmount(depositAmount);
         depositsDTO.setDepositDate(req.getDepositDate());
         depositsDTO.setServices(servicesDTO);
         depositsDTO.setAccount(accountDTO);
@@ -98,6 +105,43 @@ public class ProfileService implements IProfileService{
         servicesService.createOneDeposit(depositsDTO);
 
         return DepositsMapper.INSTANCE.toResponse(depositsDTO);
+    }
+
+    @Override
+    public ExtractionsResponse processExtraction(String username, ExtractionsRequest ext) {
+
+        validateProfile(username);
+
+        ProfileDTO profDTO = findByUsername(username);
+
+        ServicesDTO servicesDTO = new ServicesDTO();
+        servicesDTO.setServiceName("Extractions");
+        servicesDTO.setDescription("Extraction service for account withdrawals");
+
+        ExtractionsDTO extractionsDTO = new ExtractionsDTO();
+
+        AccountDTO accountDTO = accountService.findByIdAccount(profDTO.getAccount().getIdAccount());
+
+        servicesService.associateServiceWithAccount(accountDTO,servicesDTO);
+
+        BigDecimal extractionAmount = ext.getAmount();
+        BigDecimal currentBalance = accountDTO.getBalance();
+
+        if (currentBalance.compareTo(extractionAmount) < 0){
+            //EXCEPTION si el saldo que tenogo es menor al que quoeir agregar
+        }
+
+        BigDecimal newBalance = currentBalance.subtract(extractionAmount);
+        accountDTO.setBalance(newBalance);
+
+        extractionsDTO.setAmount(extractionAmount);
+        extractionsDTO.setAccount(accountDTO);
+        extractionsDTO.setServices(servicesDTO);
+
+        servicesService.createOneExtraction(extractionsDTO);
+
+
+        return ExtractionsMapper.INSTANCE.toResponse(extractionsDTO);
     }
 
 
