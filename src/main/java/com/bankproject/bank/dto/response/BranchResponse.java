@@ -1,5 +1,6 @@
 package com.bankproject.bank.dto.response;
 
+import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.entity.Account;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
@@ -24,7 +25,5 @@ public class BranchResponse {
 
     private LocalDate openingDate;
 
-    private Integer numberAccount;
-
-    private List<Account> accounts;
+    private List<AccountDTO> accounts;
 }

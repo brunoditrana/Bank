@@ -8,13 +8,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfileRequest {
+public class ProfileUpdateRequest {
+
+
+    private Long idProfile;
 
     private String username;
+
     private String password;
-    private String repeatedPassword;
+
     private String name;
+
     private String lastName;
+
+    private Role role;
 
 
 }

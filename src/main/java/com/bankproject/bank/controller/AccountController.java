@@ -26,5 +26,21 @@ public class AccountController {
 
     }
 
+    @PutMapping("/")
+    public ResponseEntity<AccountResponse> editAccount(@RequestBody AccountRequest request){
+
+        AccountResponse response = accountService.editAccount(request);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/{idAccount}")
+    public ResponseEntity<String> deleteAccount(@PathVariable Long idAccount){
+
+        String response = accountService.deleteAccount(idAccount);
+
+       return ResponseEntity.ok().body(response);
+    }
+
 
 }

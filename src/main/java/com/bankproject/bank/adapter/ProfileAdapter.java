@@ -12,4 +12,6 @@ public interface ProfileAdapter {
 
     ProfileDTO save(ProfileDTO profileDTO);
 
+    void deleteProfile(String username);
+
 }

@@ -31,8 +31,6 @@ public class Branch {
     @Column(name = "opening_date", nullable = false)
     private LocalDate openingDate;
 
-    @Column(name = "number_account", nullable = false)
-    private Integer numberAccount;
 
     @OneToMany(mappedBy = "branch")
     private List<Account> accounts;

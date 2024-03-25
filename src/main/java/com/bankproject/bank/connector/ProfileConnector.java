@@ -37,7 +37,14 @@ public class ProfileConnector implements ProfileAdapter {
     public ProfileDTO save(ProfileDTO profileDTO) {
 
         Profile profile = profileRepository.save(ProfileMapper.INSTANCE.toEntity(profileDTO));
-//Validaciones 26 11:50
+        //Validaciones 26 11:50
         return ProfileMapper.INSTANCE.toDTO(profile);
+    }
+
+    @Override
+    public void deleteProfile(String username) {
+
+        profileRepository.deleteByUsername(username);
+
     }
 }

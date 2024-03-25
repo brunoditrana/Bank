@@ -47,7 +47,7 @@ public class ServicesController {
     @PostMapping("/fixedTerm")
     public ResponseEntity<FixedTermResponse> createOneFixedTerm(@RequestBody FixedTermRequest fixedTermRequest){
 
-        FixedTermDTO dto = servicesService.createOneFixedTerm(fixedTermRequest);
+        FixedTermDTO dto = servicesService.createOneFixedTerm(FixedTermMapper.INSTANCE.toDTO(fixedTermRequest));
 
         return  ResponseEntity.ok().body(FixedTermMapper.INSTANCE.toResponse(dto));
     }

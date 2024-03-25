@@ -1,5 +1,6 @@
 package com.bankproject.bank.mapper.services;
 
+import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.response.services.ExtractionsResponse;
 import com.bankproject.bank.dto.response.services.FixedTermResponse;
 import com.bankproject.bank.dto.services.ExtractionsDTO;
@@ -19,5 +20,9 @@ public interface FixedTermMapper {
 
     FixedTermDTO toDTO(FixedTerm entity);
 
+    FixedTermDTO toDTO(FixedTermRequest fixedTermRequest);
+
     FixedTermResponse toResponse(FixedTermDTO dto);
+
+
 }

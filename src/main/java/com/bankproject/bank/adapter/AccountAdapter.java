@@ -10,4 +10,6 @@ public interface AccountAdapter {
     AccountDTO findByIdAccount(Long idAccount);
 
     AccountDTO createOneAccount(AccountDTO accountDTO);
+
+    void deleteAccount(Long idAccount);
 }

@@ -22,8 +22,6 @@ public class BranchRequest {
 
     private LocalDate openingDate;
 
-    private Integer numberAccount;
-
 
 
 }

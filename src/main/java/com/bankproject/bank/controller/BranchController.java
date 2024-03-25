@@ -24,11 +24,35 @@ public class BranchController {
         return ResponseEntity.ok().body(BranchMapper.INSTANCE.toResponse(branchDTO));
     }
 
+    @GetMapping("/{branchName}")
+    public ResponseEntity<BranchResponse> findByBranchName(@PathVariable String branchName){
+
+        BranchDTO branchDTO = branchService.findByBranchName(branchName);
+
+        return ResponseEntity.ok().body(BranchMapper.INSTANCE.toResponse(branchDTO));
+    }
+
     @PostMapping("/")
     public  ResponseEntity<BranchResponse> createOneBranch(@RequestBody BranchRequest branchRequest){
 
         BranchDTO branchDTO = branchService.createOneBranch(branchRequest);
 
         return ResponseEntity.ok().body(BranchMapper.INSTANCE.toResponse(branchDTO));
+    }
+
+    @PutMapping("/")
+    public  ResponseEntity<BranchResponse> updateBranch(@RequestBody BranchRequest request){
+
+        BranchResponse response = branchService.updateBranch(request);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<String> deleteBranch(@PathVariable Integer branchCode){
+
+        String response = branchService.deleteBranch(branchCode);
+
+        return ResponseEntity.ok().body(response);
     }
 }

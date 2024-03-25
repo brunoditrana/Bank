@@ -24,10 +24,24 @@ public class BranchConnector implements BranchAdapter {
     }
 
     @Override
+    public BranchDTO findByBranchName(String branchName) {
+
+        Branch branch = branchRepository.findByBranchName(branchName);
+
+        return BranchMapper.INSTANCE.toDTO(branch);
+    }
+
+    @Override
     public BranchDTO createOneBranch(BranchDTO branchDTO) {
 
         Branch branch = branchRepository.save(BranchMapper.INSTANCE.toEntity(branchDTO));
 
         return BranchMapper.INSTANCE.toDTO(branch);
+    }
+
+    @Override
+    public void deleteBranch(Integer branchCode) {
+
+        branchRepository.deleteByBranchCode(branchCode);
     }
 }

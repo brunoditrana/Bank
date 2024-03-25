@@ -4,10 +4,12 @@ import com.bankproject.bank.adapter.ProfileAdapter;
 import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.dto.ProfileUserDetailsService;
+import com.bankproject.bank.dto.request.ProfileUpdateRequest;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.request.services.LoanRequest;
+import com.bankproject.bank.dto.response.ProfileResponse;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.response.services.ExtractionsResponse;
 import com.bankproject.bank.dto.response.services.FixedTermResponse;
@@ -78,6 +80,34 @@ public class ProfileService implements IProfileService{
 
         return profileAdapter.findByUsername(username);
 
+    }
+
+    @Override
+    public ProfileResponse updateProfile(ProfileUpdateRequest request) {
+
+        ProfileDTO profileDTO = findByUsername(request.getUsername());
+
+        //Validar que no sea null
+
+        profileDTO.setUsername(request.getUsername());
+        profileDTO.setPassword(request.getPassword());
+        profileDTO.setName(request.getName());
+        profileDTO.setLastName(request.getLastName());
+        profileDTO.setRole(request.getRole());
+
+        profileAdapter.save(profileDTO);
+
+        return ProfileMapper.INSTANCE.toResponse(profileDTO);
+    }
+
+    @Override
+    public String deleteProfile(String username) {
+
+        ProfileDTO profileDTO = findByUsername( username);
+
+        profileAdapter.deleteProfile(profileDTO.getUsername());
+
+        return "Profile deleted successfully";
     }
 
     @Override

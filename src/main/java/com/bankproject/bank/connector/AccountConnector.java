@@ -34,4 +34,11 @@ public class AccountConnector implements AccountAdapter {
 
         return AccountMapper.INSTANCE.toDTO(a);
     }
+
+    @Override
+    public void deleteAccount(Long idAccount) {
+
+        accountRepository.deleteById(idAccount);
+
+    }
 }

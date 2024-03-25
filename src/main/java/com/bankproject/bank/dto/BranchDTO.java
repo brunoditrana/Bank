@@ -22,7 +22,5 @@ public class BranchDTO {
 
     private LocalDate openingDate;
 
-    private Integer numberAccount;
-
-    private List<Account> accounts;
+    private List<AccountDTO> accounts;
 }

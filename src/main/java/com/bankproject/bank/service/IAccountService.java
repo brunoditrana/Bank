@@ -10,4 +10,9 @@ public interface IAccountService {
     AccountDTO findByIdAccount(Long idAccount);
 
     AccountDTO createOneAccount(AccountDTO accountDTO);
+
+    AccountResponse editAccount(AccountRequest accountRequest);
+
+    String deleteAccount(Long idAccount);
+
 }

@@ -1,5 +1,7 @@
 package com.bankproject.bank.dto.response;
 
+import com.bankproject.bank.dto.BranchDTO;
+import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.entity.Profile;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -23,5 +25,7 @@ public class AccountResponse {
 
     private String state;
 
-    private Profile profile;
+    private ProfileDTO profile;
+
+    private BranchDTO branch;
 }

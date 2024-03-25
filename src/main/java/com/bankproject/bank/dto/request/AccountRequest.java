@@ -14,7 +14,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class AccountRequest {
 
+    private Long idAccount;
 
-    private String username;
+    private LocalDate openingDate;
 
+    private String state;
+
+    private String branchName;
 }

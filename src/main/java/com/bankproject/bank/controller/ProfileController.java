@@ -3,6 +3,7 @@ package com.bankproject.bank.controller;
 import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.ProfileRequest;
+import com.bankproject.bank.dto.request.ProfileUpdateRequest;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
 import com.bankproject.bank.dto.request.services.FixedTermRequest;
@@ -51,6 +52,22 @@ public class ProfileController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(ProfileMapper.INSTANCE.toResponse(profileDTO));
 
+    }
+
+    @PutMapping("/")
+    public  ResponseEntity<ProfileResponse> updateProfile(@RequestBody ProfileUpdateRequest request){
+
+        ProfileResponse response = profileService.updateProfile(request);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/{username}")
+    public  ResponseEntity<String> deleteProfile(@PathVariable String username){
+
+        String response = profileService.deleteProfile(username);
+
+        return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/deposit/{username}")
