@@ -22,15 +22,8 @@ public class FixedTermRequest {
 
     private Double interestRate;
 
-    private BigDecimal minimumAmount;
-
     private BigDecimal amount;
-
-    private LocalDate date;
 
     private FixedTermDurationEnum fixedTermDurationEnum;
 
-    private Services services;
-
-    private Account account;
 }

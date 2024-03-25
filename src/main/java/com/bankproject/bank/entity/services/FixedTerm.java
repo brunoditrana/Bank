@@ -28,9 +28,6 @@ public class FixedTerm {
     @Column(name = "interest_rate", nullable = false)
     private Double interestRate;
 
-    @Column(name = "minimum_amount", nullable = false)
-    private BigDecimal minimumAmount;
-
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
 
@@ -40,6 +37,9 @@ public class FixedTerm {
     @Column(name = "fixed_term_duration", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private FixedTermDurationEnum fixedTermDurationEnum;
+
+    @Column(name = "monthly_Payment", nullable = false)
+    private BigDecimal monthlyPayment;
 
     @OneToOne(mappedBy = "fixedTerm")
     private Services services;

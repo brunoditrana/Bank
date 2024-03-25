@@ -66,17 +66,10 @@ public class ServicesService implements IServicesService{
     }
 
     @Override
-    public FixedTermDTO createOneFixedTerm(FixedTermRequest fixedTermDTO) {
+    public FixedTermDTO createOneFixedTerm(FixedTermDTO fixedTermDTO) {
 
-        FixedTermDTO dto = new FixedTermDTO();
 
-       // dto.setInterestRate(interestRate);
-        //dto.setMinimumAmount(minimumAmount);
-        dto.setAmount(fixedTermDTO.getAmount());
-        dto.setDate(fixedTermDTO.getDate());
-        dto.setFixedTermDurationEnum(fixedTermDTO.getFixedTermDurationEnum());
-
-        return  servicesAdapter.createOneFixedTerm(dto);
+        return  servicesAdapter.createOneFixedTerm(fixedTermDTO);
 
     }
 

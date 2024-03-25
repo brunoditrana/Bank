@@ -1,6 +1,7 @@
 package com.bankproject.bank.dto.services;
 
 
+import com.bankproject.bank.dto.AccountDTO;
 import com.bankproject.bank.entity.Account;
 import com.bankproject.bank.entity.Enum.FixedTermDurationEnum;
 import com.bankproject.bank.entity.Services;
@@ -24,15 +25,15 @@ public class FixedTermDTO {
 
     private Double interestRate;
 
-    private BigDecimal minimumAmount;
-
     private BigDecimal amount;
 
     private LocalDate date;
 
     private FixedTermDurationEnum fixedTermDurationEnum;
 
-    private Services services;
+    private BigDecimal monthlyPayment;
 
-    private Account account;
+    private ServicesDTO services;
+
+    private AccountDTO account;
 }

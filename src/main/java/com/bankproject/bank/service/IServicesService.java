@@ -23,7 +23,7 @@ public interface IServicesService {
 
     ExtractionsDTO createOneExtraction(ExtractionsDTO extractionsDTO);
 
-    FixedTermDTO createOneFixedTerm(FixedTermRequest fixedTermDTO);
+    FixedTermDTO createOneFixedTerm(FixedTermDTO fixedTermDTO);
 
     List<LoanDTO> getAllLoan();
 

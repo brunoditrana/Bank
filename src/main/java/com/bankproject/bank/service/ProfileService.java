@@ -6,19 +6,19 @@ import com.bankproject.bank.dto.ProfileDTO;
 import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
+import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.request.services.LoanRequest;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.response.services.ExtractionsResponse;
+import com.bankproject.bank.dto.response.services.FixedTermResponse;
 import com.bankproject.bank.dto.response.services.LoanResponse;
-import com.bankproject.bank.dto.services.DepositsDTO;
-import com.bankproject.bank.dto.services.ExtractionsDTO;
-import com.bankproject.bank.dto.services.LoanDTO;
-import com.bankproject.bank.dto.services.ServicesDTO;
+import com.bankproject.bank.dto.services.*;
 import com.bankproject.bank.entity.Enum.Role;
 import com.bankproject.bank.mapper.ProfileMapper;
 import com.bankproject.bank.mapper.ServicesMapper;
 import com.bankproject.bank.mapper.services.DepositsMapper;
 import com.bankproject.bank.mapper.services.ExtractionsMapper;
+import com.bankproject.bank.mapper.services.FixedTermMapper;
 import com.bankproject.bank.mapper.services.LoanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -195,6 +195,63 @@ public class ProfileService implements IProfileService{
 
 
         return LoanMapper.INSTANCE.toResponse(loanDTO);
+    }
+
+    @Override
+    public FixedTermResponse processFixedTerm(String username, FixedTermRequest fixedTermRequest) {
+
+
+        validateProfile(username);
+
+        ProfileDTO profDTO = findByUsername(username);
+
+        ServicesDTO servicesDTO = new ServicesDTO();
+        servicesDTO.setServiceName("FixedTerm ");
+        servicesDTO.setDescription("FixedTerm deposit service with competitive interest rates and flexible duration options.");
+
+        FixedTermDTO fixedTermDTO = new FixedTermDTO();
+
+        AccountDTO accountDTO = accountService.findByIdAccount(profDTO.getAccount().getIdAccount());
+
+        servicesService.associateServiceWithAccount(accountDTO,servicesDTO);
+
+        BigDecimal extractionAmount = fixedTermRequest.getAmount();
+        BigDecimal currentBalance = accountDTO.getBalance();
+
+        if (currentBalance.compareTo(extractionAmount) < 0){
+            //EXCEPTION si el saldo que tenogo es menor al que quoeir agregar
+        }
+
+        BigDecimal newBalance = currentBalance.subtract(extractionAmount);
+
+        Double interestRate = fixedTermRequest.getInterestRate();
+        int numberOfMonths = fixedTermRequest.getFixedTermDurationEnum().getMonths();
+        BigDecimal monthlyInterestRate = BigDecimal.valueOf(interestRate / 100 / 12);
+
+        BigDecimal monthlyPayment = calculateMonthlyPaymentFixedTerm(extractionAmount, monthlyInterestRate, numberOfMonths);
+
+
+        accountDTO.setBalance(newBalance);
+
+        fixedTermDTO.setInterestRate(interestRate);
+        fixedTermDTO.setAmount(extractionAmount);
+        fixedTermDTO.setDate(LocalDate.now());
+        fixedTermDTO.setFixedTermDurationEnum(fixedTermRequest.getFixedTermDurationEnum());
+        fixedTermDTO.setMonthlyPayment(monthlyPayment);
+        fixedTermDTO.setServices(servicesDTO);
+        fixedTermDTO.setAccount(accountDTO);
+
+
+        servicesService.createOneFixedTerm(fixedTermDTO);
+
+        return FixedTermMapper.INSTANCE.toResponse(fixedTermDTO);
+    }
+
+    private BigDecimal calculateMonthlyPaymentFixedTerm(BigDecimal extractionAmount, BigDecimal monthlyInterestRate, int numberOfMonths) {
+        BigDecimal factor = monthlyInterestRate.add(BigDecimal.ONE).pow(numberOfMonths);
+        factor = factor.subtract(BigDecimal.ONE).divide(monthlyInterestRate.multiply(factor), 2, RoundingMode.HALF_UP);
+        BigDecimal monthlyPayment = extractionAmount.multiply(monthlyInterestRate).divide(factor, 2, RoundingMode.HALF_UP);
+        return monthlyPayment;
     }
 
 

@@ -5,10 +5,12 @@ import com.bankproject.bank.dto.ProfileUserDetailsService;
 import com.bankproject.bank.dto.request.ProfileRequest;
 import com.bankproject.bank.dto.request.services.DepositsRequest;
 import com.bankproject.bank.dto.request.services.ExtractionsRequest;
+import com.bankproject.bank.dto.request.services.FixedTermRequest;
 import com.bankproject.bank.dto.request.services.LoanRequest;
 import com.bankproject.bank.dto.response.ProfileResponse;
 import com.bankproject.bank.dto.response.services.DepositsResponse;
 import com.bankproject.bank.dto.response.services.ExtractionsResponse;
+import com.bankproject.bank.dto.response.services.FixedTermResponse;
 import com.bankproject.bank.dto.response.services.LoanResponse;
 import com.bankproject.bank.mapper.ProfileMapper;
 import com.bankproject.bank.service.IProfileService;
@@ -69,13 +71,21 @@ public class ProfileController {
 
     }
     @PostMapping("/loan/{username}")
-    private ResponseEntity<LoanResponse> processLoan(@PathVariable String username, @RequestBody LoanRequest loan){
+    public ResponseEntity<LoanResponse> processLoan(@PathVariable String username, @RequestBody LoanRequest loan){
 
         LoanResponse loanResponse = profileService.processLoan(username, loan);
         loanResponse.setMessage("Loan processed successfully");
 
         return ResponseEntity.ok().body(loanResponse);
 
+    }
+
+    @PostMapping("/fixedTerm/{username}")
+    public ResponseEntity<FixedTermResponse> processFixedTerm(@PathVariable String username, @RequestBody FixedTermRequest request){
+
+        FixedTermResponse response = profileService.processFixedTerm(username, request);
+
+        return ResponseEntity.ok().body(response);
     }
 
 
